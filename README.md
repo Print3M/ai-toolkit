@@ -23,14 +23,13 @@ This is the example usage of the toolkit:
 
     // Create model
     const model = new AiModel({
-        apiKeyEnv: "GEMINI_AI_KEY",
+        apiKeyEnv: "GEMINI_API_KEY",
         model: "gemini-2.0-flash",
         baseUrl: "https://generativelanguage.googleapis.com/v1beta/openai/",
     })
 
     // Create prompt
     const prompt = new AiPrompt<ReturnedData>({
-        
         promptTemplates: {
             system: "You are world class expert in article summarization.",
             user: "Summary this: {{ title }}, {{ article }}",

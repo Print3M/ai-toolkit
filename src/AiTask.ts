@@ -1,5 +1,5 @@
-import type AiPrompt from "./AiPrompt"
-import type AiModel from "./AiModel"
+import type { AiModel } from "./AiModel"
+import type { AiPrompt } from "./AiPrompt"
 import { retryWithTimeout, type RetryOptions } from "./utils"
 
 type RetryStrategy = RetryOptions
@@ -10,7 +10,7 @@ interface AiServiceArgs<T> {
     retryStrategy?: RetryOptions
 }
 
-class AiTask<T> {
+export class AiTask<T> {
     #model: AiModel
     #prompt: AiPrompt<T>
     #retryStrategy: RetryStrategy
@@ -42,5 +42,3 @@ class AiTask<T> {
         return data
     }
 }
-
-export default AiTask

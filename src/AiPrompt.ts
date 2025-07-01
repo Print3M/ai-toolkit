@@ -7,7 +7,7 @@ interface AiPromptArgs<T> {
     responseValidator: (v: T) => boolean
 }
 
-class AiPrompt<T> {
+export class AiPrompt<T> {
     #args: AiPromptArgs<T>
 
     constructor(args: AiPromptArgs<T>) {
@@ -44,5 +44,3 @@ class AiPrompt<T> {
         }
     }
 }
-
-export default AiPrompt

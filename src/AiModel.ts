@@ -7,7 +7,7 @@ interface AiModelConstructor {
     temperature?: number
 }
 
-class AiModel {
+export class AiModel {
     #client: OpenAI
     #args: AiModelConstructor
 
@@ -46,5 +46,3 @@ class AiModel {
         return content
     }
 }
-
-export default AiModel

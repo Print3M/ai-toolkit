@@ -1,0 +1,16 @@
+{
+  "name": "ai-toolkit",
+  "module": "index.ts",
+  "type": "module",
+  "devDependencies": {
+    "@types/bun": "latest",
+    "@types/nunjucks": "^3.2.6"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "nunjucks": "^3.2.4",
+    "openai": "^5.8.2"
+  }
+}

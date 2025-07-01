@@ -1,6 +1,8 @@
 # ai-toolkit
 
-Simple TypeScript toolkit to work with atomic AI (LLM) tasks. Automated tasks:
+**Simple TypeScript toolkit to work with atomic AI (LLM) tasks.**
+
+It automates the following steps:
 
 1. Initialize AI model (`openai` package) with API key from environs.
 2. Get system and user prompt template.
@@ -13,6 +15,7 @@ Simple TypeScript toolkit to work with atomic AI (LLM) tasks. Automated tasks:
 This is the example usage of the toolkit:
 
 ```javascript
+    // Define expected data
     type ReturnedData = {
         title: string
         summary: string

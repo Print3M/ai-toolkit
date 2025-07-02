@@ -6,6 +6,7 @@ interface AiModelConstructor {
     model: string
     baseUrl?: string
     temperature?: number
+    responseFormat?: string
 }
 
 export class AiModel {
@@ -38,6 +39,7 @@ export class AiModel {
                 },
             ],
             temperature: this.#args.temperature,
+            response_format: { type: "json_object" },
         })
 
         const { content } = resp.choices[0].message

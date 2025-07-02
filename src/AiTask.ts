@@ -1,5 +1,6 @@
 import type { AiModel } from "./AiModel"
 import type { AiPrompt } from "./AiPrompt"
+import { AiInvalidResponse } from "./errors"
 import { retryWithTimeout, type RetryOptions } from "./utils"
 
 type RetryStrategy = RetryOptions
@@ -26,18 +27,16 @@ export class AiTask<T> {
     }
 
     async execute() {
-        const prompts = await this.#prompt.getPrompts()
+        const prompts = await this.#prompt.buildPrompts()
 
         const resp = await retryWithTimeout(
             () => this.#model.sendPrompt(prompts.system, prompts.user),
             this.#retryStrategy
         )
 
-        if (!resp) return
-
         const data = await this.#prompt.parseResponse(resp)
 
-        if (!this.#prompt.isResponseValid(data)) return
+        if (!this.#prompt.isResponseValid(data)) throw new AiInvalidResponse()
 
         return data
     }

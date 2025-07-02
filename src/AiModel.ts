@@ -1,4 +1,5 @@
 import OpenAI from "openai"
+import { AiEmptyResponseError } from "./errors"
 
 interface AiModelConstructor {
     apiKeyEnv: string
@@ -14,7 +15,7 @@ export class AiModel {
     constructor(args: AiModelConstructor) {
         const apiKey = process.env[args.apiKeyEnv]
 
-        if (!apiKey) throw Error(`${args.apiKeyEnv} environ is not defined`)
+        if (!apiKey) throw Error(`${args.apiKeyEnv} environ is empty or undefined`)
 
         this.#client = new OpenAI({
             apiKey: apiKey,
@@ -23,7 +24,7 @@ export class AiModel {
         this.#args = args
     }
 
-     async sendPrompt(system: string, user: string) {
+    async sendPrompt(system: string, user: string) {
         const resp = await this.#client.chat.completions.create({
             model: this.#args.model,
             messages: [
@@ -41,7 +42,7 @@ export class AiModel {
 
         const { content } = resp.choices[0].message
 
-        if (!content) return
+        if (!content) throw new AiEmptyResponseError()
 
         return content
     }

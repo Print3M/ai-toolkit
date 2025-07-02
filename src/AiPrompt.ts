@@ -14,7 +14,7 @@ export class AiPrompt<T> {
         this.#args = args
     }
 
-    async getPrompts() {
+    async buildPrompts() {
         const env = nunjucks.configure({ autoescape: false })
         const templates = this.#args.promptTemplates
 
@@ -36,7 +36,7 @@ export class AiPrompt<T> {
         return this.#args.responseParser(response)
     }
 
-    isResponseValid(response: any) {
+    isResponseValid(response: T) {
         try {
             return this.#args.responseValidator(response)
         } catch {
